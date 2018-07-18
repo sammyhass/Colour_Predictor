@@ -20,9 +20,9 @@ model = load_model("my_model.h5")
 img = np.zeros((300, 512, 3), np.uint8)
 cv.namedWindow("image")
 
-cv.createTrackbar("R", "image", 0, 255, nothing)
-cv.createTrackbar("G", "image", 0, 255, nothing)
-cv.createTrackbar("B", "image", 0, 255, nothing)
+cv.createTrackbar("R", "image", 160, 255, nothing)
+cv.createTrackbar("G", "image", 160, 255, nothing)
+cv.createTrackbar("B", "image", 160, 255, nothing)
 
 while 1:
 	cv.imshow("image", img)
@@ -33,8 +33,8 @@ while 1:
 	r = cv.getTrackbarPos("R", "image")
 	g = cv.getTrackbarPos("G", "image")
 	b = cv.getTrackbarPos("B", "image")
-
-	print(label_list[np.argmax(model.predict(np.array([[r / 255, g / 255, b / 255]])))])
 	img[:] = [b, g, r]
+	cv.putText(img, label_list[np.argmax(model.predict(np.array([[r / 255, g / 255, b / 255]])))], (0, 100), cv.FONT_HERSHEY_SIMPLEX, 0.8, (0, 0, 0), 2, cv.LINE_AA)
+
 
 cv.destroyAllWindows()
