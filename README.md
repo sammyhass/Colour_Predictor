@@ -1,4 +1,4 @@
-# Colour_Predictor
+# Colour Predictor
 Simple colour predictor written with Python and Keras
 
 
